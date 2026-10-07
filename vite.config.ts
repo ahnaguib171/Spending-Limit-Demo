@@ -10,17 +10,15 @@ function resolveBase(): string {
   if (pagesBase) {
     return pagesBase.endsWith('/') ? pagesBase : `${pagesBase}/`
   }
-  if (process.env.GITHUB_PAGES === 'true' && process.env.GITHUB_REPOSITORY) {
-    const repo = process.env.GITHUB_REPOSITORY.split('/')[1]
-    if (repo) return `/${repo}/`
-  }
+  // Relative base works on any GitHub Pages project URL without hard-coding the repo name.
+  if (process.env.GITHUB_PAGES === 'true') return './'
   if (process.env.FIGMA_PUBLIC_URL) return `${process.env.FIGMA_PUBLIC_URL}/`
   return '/'
 }
 
 /** Rewrite root-absolute `/fonts/` URLs in CSS so GitHub Pages subpaths work. */
 function rewritePublicRootUrls(base: string): Plugin {
-  const prefix = base.endsWith('/') ? base : `${base}/`
+  const prefix = base === './' ? './' : base.endsWith('/') ? base : `${base}/`
   return {
     name: 'rewrite-public-root-urls',
     enforce: 'pre',
