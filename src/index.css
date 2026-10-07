@@ -1,0 +1,99 @@
+@import 'tailwindcss';
+
+@font-face {
+  font-family: 'Figtree:Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/Figtree-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noontree:Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/Noontree-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noontree:Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/Noontree-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noontree:Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Noontree-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Noontree:SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/Noontree-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'SF Pro:Semibold';
+  font-style: normal;
+  font-weight: 590;
+  src: url('https://static.figma.com/font/SF-Pro_1') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter:Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url('/fonts/Inter-Medium.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Cairo:Medium';
+  font-style: normal;
+  font-weight: 500;
+  src: url('https://static.figma.com/font/Cairo_slnt_wght__1') format('woff2');
+}
+
+@font-face {
+  font-family: 'Proxima Nova:Bold';
+  font-style: normal;
+  font-weight: 700;
+  src: url('/fonts/Proxima_Nova-Bold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Proxima Nova:Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Proxima_Nova-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter:Regular';
+  font-style: normal;
+  font-weight: 400;
+  src: url('/fonts/Inter-Regular.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Inter:Semi Bold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('https://static.figma.com/font/Inter_1') format('woff2');
+}
+
+@font-face {
+  font-family: 'Figtree:SemiBold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/Figtree-SemiBold.woff2') format('woff2');
+}
+
+@font-face {
+  font-family: 'Proxima Nova:Semibold';
+  font-style: normal;
+  font-weight: 600;
+  src: url('/fonts/Proxima_Nova-Semibold.woff2') format('woff2');
+}
