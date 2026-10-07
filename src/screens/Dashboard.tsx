@@ -2,7 +2,7 @@ import { useState, type ReactNode } from 'react';
 import { REQUESTS, ORG_ORDERS, fmt, type ApprovalRequest } from '../data';
 import { BottomNav } from '../components';
 
-const assetPathPrefix = '/assets';
+import { assetPathPrefix } from '../assetPaths';
 const imgBackBtn = `${assetPathPrefix}/f1d90.svg`;
 const imgEditIcon = `${assetPathPrefix}/cc22d.svg`;
 const imgCheckCircle = `${assetPathPrefix}/63a5f.svg`;

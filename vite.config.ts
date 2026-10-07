@@ -5,14 +5,40 @@ import path from 'node:path'
 
 import siteConfiguration from './.figma/make/site.json'
 
+function resolveBase(): string {
+  const pagesBase = process.env.PAGES_BASE
+  if (pagesBase) {
+    return pagesBase.endsWith('/') ? pagesBase : `${pagesBase}/`
+  }
+  if (process.env.GITHUB_PAGES === 'true' && process.env.GITHUB_REPOSITORY) {
+    const repo = process.env.GITHUB_REPOSITORY.split('/')[1]
+    if (repo) return `/${repo}/`
+  }
+  if (process.env.FIGMA_PUBLIC_URL) return `${process.env.FIGMA_PUBLIC_URL}/`
+  return '/'
+}
+
+/** Rewrite root-absolute `/fonts/` URLs in CSS so GitHub Pages subpaths work. */
+function rewritePublicRootUrls(base: string): Plugin {
+  const prefix = base.endsWith('/') ? base : `${base}/`
+  return {
+    name: 'rewrite-public-root-urls',
+    enforce: 'pre',
+    transform(code, id) {
+      if (!id.endsWith('.css')) return null
+      return code.replace(/url\(['"]\/(fonts|assets)\//g, `url('${prefix}$1/`)
+    },
+  }
+}
 
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === 'development'
+  const base = resolveBase()
 
   return {
-    base: process.env.FIGMA_PUBLIC_URL ? `${process.env.FIGMA_PUBLIC_URL}/` : '/',
+    base,
     build: {
       sourcemap: emitSourcemaps ? 'inline' : false,
       minify: !emitSourcemaps,
@@ -20,6 +46,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
 react(),
       tailwindcss(),
+      rewritePublicRootUrls(base),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),

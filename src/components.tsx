@@ -1,6 +1,6 @@
 import type { RequestStatus, Role } from './data';
 
-const assetPathPrefix = '/assets';
+import { assetPathPrefix } from './assetPaths';
 export const imgBack = `${assetPathPrefix}/cb52f.svg`;
 export const imgEdit = `${assetPathPrefix}/836f7.svg`;
 export const imgFilter = `${assetPathPrefix}/92b47.svg`;

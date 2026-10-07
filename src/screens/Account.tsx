@@ -1,7 +1,7 @@
 import type { Role, ScreenId } from '../data';
 import { ORG_NAME } from '../data';
 
-const assetPathPrefix = '/assets';
+import { assetPathPrefix } from '../assetPaths';
 
 const imgLines = `${assetPathPrefix}/ed2a8.svg`;
 const imgLIneRaw = `${assetPathPrefix}/ff89a.svg`;

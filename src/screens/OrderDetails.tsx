@@ -102,7 +102,7 @@ function DetailEmptyState({ message }: { message: string }) {
   );
 }
 
-const assetPathPrefix = '/assets';
+import { assetPathPrefix } from '../assetPaths';
 
 // icons from NB Consumer App design
 const imgBackIcon        = `${assetPathPrefix}/b96c7.svg`;
