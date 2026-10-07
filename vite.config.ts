@@ -1,9 +1,26 @@
 import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
+import fs from 'node:fs'
 import path from 'node:path'
 
-import siteConfiguration from './.figma/make/site.json'
+const DEFAULT_SITE_CONFIGURATION: FigmaSiteConfiguration = {
+  title: 'Spend Controls',
+  description:
+    'Empower organizations with controlled spending through customizable approval workflows, ensuring efficient order management and budget compliance.',
+  robots: { index: false },
+}
+
+/** Reads Figma site metadata when present. Hosted builds (Vercel) may omit `.figma/`. */
+function loadSiteConfiguration(): FigmaSiteConfiguration {
+  const configPath = path.resolve(__dirname, '.figma/make/site.json')
+  try {
+    const parsed = JSON.parse(fs.readFileSync(configPath, 'utf8')) as FigmaSiteConfiguration
+    return { ...DEFAULT_SITE_CONFIGURATION, ...parsed }
+  } catch {
+    return DEFAULT_SITE_CONFIGURATION
+  }
+}
 
 function resolveBase(): string {
   const pagesBase = process.env.PAGES_BASE
@@ -45,7 +62,7 @@ export default defineConfig(({ mode }) => {
 react(),
       tailwindcss(),
       rewritePublicRootUrls(base),
-      figmaSiteConfiguration(siteConfiguration),
+      figmaSiteConfiguration(loadSiteConfiguration()),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
       figmaMakeKitPlugin({ storiesGlob: '/src/**/*.stories.{ts,tsx,js,jsx}' }),
